@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Akka4Net{
 
-namespace Akka4Net
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
+    using System;
+
+    using Akka.Actor;
+
+    internal class Program{
+
+        private static void Main(string[] args){
+            ActorSystem actorsystem = ActorSystem.Create("MySystem");
+            IActorRef actorref = actorsystem.ActorOf<GreetingActor>("greeter");
+            actorref.Tell(new GreetingMessage());
+            Console.Read();
         }
+
     }
+
 }
