@@ -1,4 +1,5 @@
-﻿namespace Akka4Net.Client{
+﻿namespace Akka4Net.Client
+{
     #region Using
 
     using System;
@@ -10,11 +11,12 @@
 
     #endregion
 
-    internal class Program{
-
-        private static void Main(string[] args){
+    internal class Program
+    {
+        private static void Main(string[] args)
+        {
             var config = ConfigurationFactory.ParseString(
-                @"
+                                                          @"
                 akka {
                 actor {
                 provider = ""Akka.Remote.RemoteActorRefProvider, Akka.Remote""
@@ -30,18 +32,24 @@
                 }
                 }
                 "
-                );
+            );
 
-            using (var system = ActorSystem.Create("MyClient", config)){
+            using (var system = ActorSystem.Create("MyClient", config))
+            {
                 var greeting = system.ActorSelection("akka.tcp://MyServer@localhost:8081/user/Greeting");
-                while (true){
+                Console.WriteLine("Client Run......");
+                while (true)
+                {
                     var input = Console.ReadLine();
                     if (input.Equals("sayHello"))
-                        greeting.Tell(new GreetingMessage());
+
+//                        greeting.Tell(new GreetingMessage());
+                    {
+                        var result = greeting.Ask(new GreetingMessage()).Result as GreetingResponseMessage;
+                        Console.WriteLine(result.UserName);
+                    }
                 }
             }
         }
-
     }
-
 }

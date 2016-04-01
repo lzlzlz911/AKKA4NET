@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicActor.cs" />
     <Compile Include="GreetingActor.cs" />
     <Compile Include="GreetingActorTwo.cs" />
     <Compile Include="Program.cs" />

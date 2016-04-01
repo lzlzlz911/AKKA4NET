@@ -32,7 +32,8 @@
 
             using (var system = ActorSystem.Create("MyServer", config))
             {
-                system.ActorOf<GreetingActor>("Greeting");
+                var target = system.ActorOf<GreetingActor>("Greeting");
+                
                 Console.ReadLine();
             }
         }
